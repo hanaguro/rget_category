@@ -176,7 +176,7 @@ fn main() {
 
     for category in categories {
         if let Some((start, end)) = parse_range(&category) {
-            for i in start..end {
+            for i in start..=end {
                 numbers.push(i);
             }
         }
@@ -192,7 +192,6 @@ fn main() {
             eprintln!("Invalid categories: {}", args.categories);
             std::process::exit(1);
         }
-
     }
 
     // rootになるか確認
