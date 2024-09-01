@@ -49,11 +49,11 @@ struct Args {
     categories: String,
 }
 
-fn parse_range(value: &str) -> Option<(i32, i32)> {
+fn parse_range(value: &str) -> Option<(u8, u8)> {
     let parts: Vec<&str> = value.split('-').collect();
     if parts.len() == 2 {
-        if let (Ok(start), Ok(end)) = (parts[0].parse::<i32>(), parts[1].parse::<i32>()) {
-            if start >= 0 && end <= 16 && start <= end {
+        if let (Ok(start), Ok(end)) = (parts[0].parse::<u8>(), parts[1].parse::<u8>()) {
+            if end <= 16 && start <= end {
                 return Some((start, end));
             }
         }
@@ -180,8 +180,8 @@ fn main() {
                 numbers.push(i);
             }
         }
-        else if let Ok(num) = args.categories.parse::<i32>() {
-            if num >= 0 && num <= 16 {
+        else if let Ok(num) = args.categories.parse::<u8>() {
+            if num <= 16 {
                 numbers.push(num);
             }else{
                 eprintln!("Error: Please specify number in the range 0-16: {}", args.categories);
